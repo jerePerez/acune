@@ -1,0 +1,24 @@
+.testimonial-initial {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 600;
+    font-size: 1.2rem;
+    margin-right: 1rem;
+}
+
+.bg-coral {
+    background-color: var(--coral);
+}
+
+.bg-mint {
+    background-color: #34d399;
+}
+
+.bg-lavender {
+    background-color: #a78bfa;
+}

@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
+
+:root {
+  --coral: #FF7F7F;
+  --peach: #FFB5B5;
+  --mint: #B5E7B5;
+  --lavender: #D4B5FF;
+  --cream: #FFF5E6;
+}
+
+body {
+  font-family: 'Patrick Hand', cursive;
+  background-color: var(--cream);
+}
+
+section {
+  padding: 2rem 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+
+
+.bg-cream {
+  background-color: var(--cream);
+}
+
+.text-coral {
+  color: var(--coral);
+}
+
+.btn-coral {
+  background-color: var(--coral);
+  color: white;
+  border-color: var(--coral);
+}
+
+.btn-coral:hover {
+  background-color: #ff6a6a;
+  border-color: #ff6a6a;
+  color: white;
+}
+
+.gradient-bg {
+  background: linear-gradient(135deg, var(--peach) 0%, var(--mint) 50%, var(--lavender) 100%);
+}

@@ -1,0 +1,52 @@
+.card-hover {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-hover:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.icon-wrapper {
+    width: 64px;
+    height: 64px;
+    background-color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-service {
+    background-color: white;
+    border: none;
+    transition: box-shadow 0.3s ease;
+}
+
+.btn-service:hover {
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.btn-coral-text {
+    color: var(--coral);
+}
+
+.btn-mint-text {
+    color: #34d399;
+}
+
+.btn-lavender-text {
+    color: #a78bfa;
+}
+
+.gradient-peach {
+    background: linear-gradient(135deg, var(--peach), var(--coral));
+}
+
+.gradient-mint {
+    background: linear-gradient(135deg, var(--mint), #34d399);
+}
+
+.gradient-lavender {
+    background: linear-gradient(135deg, var(--lavender), #a78bfa);
+}
