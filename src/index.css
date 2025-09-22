@@ -86,14 +86,14 @@ html {
 
 /* Primera imagen */
 .img-back-hero::before {
-  background-image: url('../public/background01.png');
+  background-image: url('/background01.png');
   animation: zoomImage 10s ease-in-out infinite alternate,
     fadeImages 10s linear infinite;
 }
 
 /* Segunda imagen */
 .img-back-hero::after {
-  background-image: url('../public/background02.png');
+  background-image: url('/background02.png');
   animation: zoomImage 10s ease-in-out infinite alternate,
     fadeImages 10s linear infinite;
   animation-delay: 5s, 5s;
