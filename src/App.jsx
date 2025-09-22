@@ -13,6 +13,7 @@ function App() {
   // No mostrar el Footer en la página de login
   const showFooter = location.pathname !== '/login';
 
+
   return (
     <>
       <Header />
