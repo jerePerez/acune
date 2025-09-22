@@ -8,7 +8,7 @@ function Ejercicios() {
             <Container>
                 <div className="text-center mb-5">
                     <h2 className="display-5 fw-bold text-dark">Ejercicios Especializados</h2>
-                    <p className="lead text-muted mx-auto" style={{ maxWidth: '42rem' }}>
+                    <p className="lead text-muted mx-auto" style={{ maxWidth: '90%' }}>
                         Rutinas seguras y efectivas para cada etapa de tu maternidad
                     </p>
                 </div>

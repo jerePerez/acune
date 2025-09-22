@@ -4,10 +4,10 @@ import './CTA.css';
 
 function CTA() {
     return (
-        <section className="gradient-bg text-white text-center">
+        <section className="gradient-bg text-black text-center">
             <Container>
                 <h2 className="display-5 fw-bold mb-4">¿Lista para Comenzar tu Viaje?</h2>
-                <p className="lead mb-5 mx-auto" style={{ maxWidth: '42rem' }}>
+                <p className="lead mb-5 mx-auto" style={{ maxWidth: '90%' }}>
                     Únete a cientos de mamás que han confiado en nosotras para vivir su maternidad de forma plena y saludable.
                 </p>
                 <Stack direction="horizontal" gap={3} className="justify-content-center">

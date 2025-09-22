@@ -1,5 +1,5 @@
 .hero-subtitle {
-    max-width: 42rem;
+    max-width: 100%;
 }
 
 .btn-hero-primary {
@@ -37,4 +37,10 @@
         border-radius: 0.4rem;
         /* opcional: esquinas más pequeñas */
     }
+}
+
+.img-back-hero h1,
+.img-back-hero p,
+.img-back-hero button {
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 1);
 }

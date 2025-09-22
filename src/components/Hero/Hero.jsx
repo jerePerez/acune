@@ -4,7 +4,7 @@ import './Hero.css';
 
 function Hero() {
     return (
-        <section className="gradient-bg text-white text-center">
+        <section className="img-back-hero text-white text-center">
             <Container>
                 <h1 className="display-3 fw-bold mb-4">Tu Bienestar en Cada Etapa</h1>
                 <p className="lead mb-5 mx-auto hero-subtitle">

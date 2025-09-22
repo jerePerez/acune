@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
 
+
 :root {
   --coral: #FF7F7F;
   --peach: #FFB5B5;
@@ -10,12 +11,22 @@
 }
 
 body {
-  font-family: 'Patrick Hand', cursive;
+  font-family: 'Poppins', cursive;
   background-color: var(--cream);
 }
 
 section {
   padding: 2rem 0;
+}
+
+h1,
+h2,
+.nombre-logo {
+  font-family: 'Patrick Hand', cursive;
+}
+
+.nombre-logo {
+  font-size: 30px;
 }
 
 html {
@@ -46,4 +57,87 @@ html {
 
 .gradient-bg {
   background: linear-gradient(135deg, var(--peach) 0%, var(--mint) 50%, var(--lavender) 100%);
+}
+
+.img-back-hero {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  /* Oculta el exceso al hacer zoom */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+/* Pseudo-elementos para manejar las imágenes */
+.img-back-hero::before,
+.img-back-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transform: scale(1);
+  z-index: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+/* Primera imagen */
+.img-back-hero::before {
+  background-image: url('../public/background01.png');
+  animation: zoomImage 10s ease-in-out infinite alternate,
+    fadeImages 10s linear infinite;
+}
+
+/* Segunda imagen */
+.img-back-hero::after {
+  background-image: url('../public/background02.png');
+  animation: zoomImage 10s ease-in-out infinite alternate,
+    fadeImages 10s linear infinite;
+  animation-delay: 5s, 5s;
+  /* Empieza a mitad del ciclo */
+}
+
+/* Animación de zoom */
+@keyframes zoomImage {
+  0% {
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(1.2);
+  }
+}
+
+/* Animación de cambio de opacidad */
+@keyframes fadeImages {
+
+  0%,
+  45% {
+    opacity: 1;
+  }
+
+  50%,
+  95% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Contenido por encima de las imágenes */
+.img-back-hero>* {
+  position: relative;
+  z-index: 1;
+  color: white;
+}
+
+#ejercicios {
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow-x: hidden;
 }
