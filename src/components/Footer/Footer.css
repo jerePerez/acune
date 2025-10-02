@@ -26,3 +26,16 @@
     justify-content: center;
     margin-right: 0.5rem;
 }
+
+.instagram-link svg {
+    color: #E1306C;
+    /* color base Instagram */
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.instagram-link:hover svg {
+    color: #833AB4;
+    /* degradado o color secundario Instagram */
+    transform: scale(1.2);
+    /* agranda el ícono */
+}

@@ -3,7 +3,7 @@ import { Navbar, Container, Nav, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import './Header.css';
-import logo from '../../assets/acune.png';
+import logo from '../../assets/nacer.png';
 
 function Header() {
     const { user } = useAuth();
@@ -12,8 +12,8 @@ function Header() {
         <Navbar bg="white" expand="lg" className="shadow-lg sticky-top">
             <Container>
                 <Navbar.Brand as={Link} to="/" className="d-flex align-items-center">
-                    <img src={logo} alt="acune logo" style={{ width: '40px', height: '40px' }} />
-                    <span className="fw-bold ms-2 nombre-logo">Acune</span>
+                    <img src={logo} alt="nacer logo" style={{ width: '40px', height: '40px' }} />
+                    <span className="fw-bold ms-2 nombre-logo">Nacer</span>
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">

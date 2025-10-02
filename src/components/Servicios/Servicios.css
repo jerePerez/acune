@@ -50,3 +50,7 @@
 .gradient-lavender {
     background: linear-gradient(135deg, var(--lavender), #a78bfa);
 }
+
+.gradient-sky {
+    background: linear-gradient(135deg, var(--sky), var(--sky-dark));
+}

@@ -8,7 +8,7 @@ function CTA() {
             <Container>
                 <h2 className="display-5 fw-bold mb-4">¿Lista para Comenzar tu Viaje?</h2>
                 <p className="lead mb-5 mx-auto" style={{ maxWidth: '90%' }}>
-                    Únete a cientos de mamás que han confiado en nosotras para vivir su maternidad de forma plena y saludable.
+                    Unite a quienes han confiado en nosotras para vivir su maternidad de forma plena y saludable.
                 </p>
                 <Stack direction="horizontal" gap={3} className="justify-content-center">
                     <Button size="lg" className="btn-cta-primary rounded-pill px-5 py-3">Agendar Consulta</Button>

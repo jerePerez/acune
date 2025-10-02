@@ -3,9 +3,10 @@ import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 import './Servicios.css';
 
 const services = [
-    { icon: '🤱', title: 'Consulta Prenatal', text: 'Seguimiento personalizado durante tu embarazo.', gradient: 'gradient-peach', btnClass: 'btn-coral-text' },
+    { icon: '🤱', title: 'Talleres Prenatales', text: 'Seguimiento personalizado durante tu embarazo.', gradient: 'gradient-peach', btnClass: 'btn-coral-text' },
+    { icon: '👩‍⚕️', title: 'Asesoramiento en Lactancia', text: 'Asesoría especializada para una lactancia exitosa.', gradient: 'gradient-lavender', btnClass: 'btn-lavender-text' },
     { icon: '💆‍♀️', title: 'Cuidado Postparto', text: 'Recuperación integral con masajes, nutrición y apoyo.', gradient: 'gradient-mint', btnClass: 'btn-mint-text' },
-    { icon: '👩‍⚕️', title: 'Lactancia Materna', text: 'Asesoría especializada para una lactancia exitosa.', gradient: 'gradient-lavender', btnClass: 'btn-lavender-text' }
+    { icon: '👶', title: 'Servicio para Bebés', text: 'Cuidados y estimulación temprana para el bienestar de tu bebé.', gradient: 'gradient-sky', btnClass: 'btn-sky-text' }
 ];
 
 function Servicios() {
@@ -20,7 +21,7 @@ function Servicios() {
                 </div>
                 <Row className="g-4">
                     {services.map((service, index) => (
-                        <Col md={4} key={index}>
+                        <Col md={6} key={index}>
                             <Card className={`text-center text-white border-0 p-4 rounded-4 card-hover ${service.gradient}`}>
                                 <Card.Body>
                                     <div className="icon-wrapper mx-auto mb-4"><span className="fs-1">{service.icon}</span></div>
