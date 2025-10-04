@@ -1,8 +1,8 @@
 import React from 'react';
 import { Container, Row, Col, Button, Nav } from 'react-bootstrap';
 import './Footer.css';
-import logo from '../../assets/nacer.png';
-import social from '../../assets/instagram.png';
+import logo from '../../assets/nacersalud.png';
+
 
 function Footer() {
     return (

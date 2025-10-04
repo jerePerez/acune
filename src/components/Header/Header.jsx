@@ -3,7 +3,7 @@ import { Navbar, Container, Nav, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import './Header.css';
-import logo from '../../assets/nacer.png';
+import logo from '../../assets/nacersalud.png';
 
 function Header() {
     const { user } = useAuth();
