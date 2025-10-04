@@ -13,7 +13,7 @@ function Header() {
             <Container>
                 <Navbar.Brand as={Link} to="/" className="d-flex align-items-center">
                     <img src={logo} alt="nacer logo" style={{ width: '40px', height: '40px' }} />
-                    <span className="fw-bold ms-2 nombre-logo">Nacer</span>
+                    <span className="fw-bold ms-2 nombre-logo">Nacer Salud</span>
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
