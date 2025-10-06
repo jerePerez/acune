@@ -52,7 +52,7 @@ function Footer() {
 
                 </Row>
                 <hr className="mt-5 mb-4" />
-                <p className="text-center text-white-50">&copy; 2025 Nacer. Todos los derechos reservados.</p>
+                <p className="text-center text-white-50">&copy; 2025 Nacer Salud. Todos los derechos reservados.</p>
             </Container>
         </footer>
     );

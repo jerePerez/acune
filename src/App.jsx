@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
@@ -7,12 +7,22 @@ import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 import Course from './pages/Course';
 import ProtectedRoute from './utils/ProtectedRoute';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 function App() {
   const location = useLocation();
   // No mostrar el Footer en la página de login
   const showFooter = location.pathname !== '/login';
 
+  useEffect(() => {
+    // 2. Inicializa AOS al montar el componente App
+    AOS.init({
+      duration: 1000,      // Duración general de la animación (1 segundo)
+      once: true,          // La animación se ejecuta solo la primera vez que el elemento aparece
+      easing: 'ease-in-out', // Curva de animación
+    });
+  }, []);
 
   return (
     <>
