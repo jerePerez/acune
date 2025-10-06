@@ -77,7 +77,7 @@ function Servicios() {
                 </div>
                 <Row className="g-4">
                     {services.map((service, index) => (
-                        <Col md={6} key={index}>
+                        <Col md={6} key={index} data-aos="fade-right" data-aos-mirror="true" data-aos-delay={index * 150}>
                             <Card className={`text-center text-white border-0 p-4 rounded-4 card-hover ${service.gradient}`}>
                                 <Card.Body>
                                     <div className="icon-wrapper mx-auto mb-4"><span className="fs-1">{service.icon}</span></div>

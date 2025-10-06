@@ -101,7 +101,7 @@ function Ejercicios() {
                     </p>
                 </div>
                 <Row className="g-5 align-items-center">
-                    <Col lg={6}>
+                    <Col lg={6} >
                         <div className="d-flex flex-column gap-4">
                             {/* Tus 4 ejercicios estáticos */}
                             <div className="d-flex align-items-start gap-3">

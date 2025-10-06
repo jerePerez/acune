@@ -18,9 +18,11 @@ function App() {
   useEffect(() => {
     // 2. Inicializa AOS al montar el componente App
     AOS.init({
-      duration: 1000,      // Duración general de la animación (1 segundo)
-      once: true,          // La animación se ejecuta solo la primera vez que el elemento aparece
+      duration: 500,      // Duración general de la animación (1 segundo)
+      once: false,          // La animación se ejecuta solo la primera vez que el elemento aparece
       easing: 'ease-in-out', // Curva de animación
+      mirror: true,       // <--- ESTO es esencial para la repetición al subir
+      offset: 150,        // Ajusta la distancia de activación
     });
   }, []);
 
