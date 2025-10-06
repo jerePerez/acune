@@ -39,3 +39,20 @@
     transform: scale(1.2);
     /* agranda el ícono */
 }
+
+.wapp-link {
+    padding-left: 10px;
+}
+
+.wapp-link svg {
+    color: #25D366;
+    /* color base WhatsApp */
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.wapp-link:hover svg {
+    color: #d5ec05;
+    /* degradado o color secundario WhatsApp */
+    transform: scale(1.2);
+    /* agranda el ícono */
+}

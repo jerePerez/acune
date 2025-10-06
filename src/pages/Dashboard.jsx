@@ -5,6 +5,7 @@ import { Container, Button, Card, Row, Col } from 'react-bootstrap';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 
+const nivel2Content = "https://drive.google.com/file/d/1cUM82iWjoJkD7_u4Lpi8mv73Fkg0YR-B/preview"
 const Dashboard = () => {
     // 1. Obtener los permisos del contexto
     const { user, logout, userPermissions, loading } = useAuth();
@@ -39,9 +40,12 @@ const Dashboard = () => {
                     <Col md={6} className="mb-4" data-aos="fade-right"> {/* <-- Animación AOS */}
                         <Card border="success">
                             <Card.Body>
-                                <Card.Title>Contenido Básico (Nivel 1)</Card.Title>
-                                <Card.Text>Bienvenida, este es el contenido inicial visible para todos los usuarios.</Card.Text>
-                                <Button variant="success">Ir a Introducción</Button>
+                                <Card.Title>Introducción (Nivel básico)</Card.Title>
+                                <Card.Text>El objetivo de esta planificación es rehabilitar progresivamente aquellas zonas del cuerpo que producto de la gestación se vieron modificadas. Entre ellas: Suelo pélvico y Core.
+
+                                    Este primer mes, el punto de partida es el reconocimiento. Donde realizaremos ejercicios de conciencia postural, reconocimiento del suelo pélvico y donde se iniciará con la técnica hipopresiva.
+                                </Card.Text>
+                                <Button variant="success">Continuar recorrido</Button>
                             </Card.Body>
                         </Card>
                     </Col>
@@ -49,12 +53,38 @@ const Dashboard = () => {
 
                 {/* 2. NIVEL 2: Contenido Exclusivo (Habilitado por tu OK) */}
                 {userPermissions.nivel2 ? (
-                    <Col md={6} className="mb-4" data-aos="fade-left"> {/* <-- Animación AOS */}
-                        <Card border="warning">
+                    <Col md={6} className="mx-auto mb-4" data-aos="zoom-in" data-aos-mirror="true">
+                        <Card border="warning" className="text-center">
                             <Card.Body>
-                                <Card.Title>¡Contenido Nivel 2 Desbloqueado! 🔓</Card.Title>
-                                <Card.Text>¡Tu acceso fue aprobado! Ya puedes ver la sección de videos avanzados.</Card.Text>
-                                <Button variant="warning">Ver Lecciones Exclusivas</Button>
+                                <Card.Title as="h3" className="mb-3 text-warning">Video Exclusivo</Card.Title>
+
+                                {/* 🚨 Contenedor con estilos en línea para la proporción 9:16 */}
+                                <div style={{
+                                    position: 'relative',
+                                    paddingBottom: '177.78%', // Proporción 16/9
+                                    height: 0,
+                                    overflow: 'hidden'
+                                }}>
+                                    <iframe
+                                        // El iframe se posiciona y estira para llenar el contenedor
+                                        src={nivel2Content}
+                                        frameBorder="0"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                        allowFullScreen
+                                        title="Contenido Nivel 2"
+                                        className="rounded"
+                                        style={{
+                                            position: 'absolute',
+                                            top: 0,
+                                            left: 0,
+                                            width: '100%',
+                                            height: '100%',
+                                            // Esto asegura que el contenido vertical no se corte si el contenedor es estrecho
+                                            objectFit: 'cover'
+                                        }}
+                                    ></iframe>
+                                </div>
+
                             </Card.Body>
                         </Card>
                     </Col>
@@ -64,7 +94,7 @@ const Dashboard = () => {
                         <Card border="secondary">
                             <Card.Body>
                                 <Card.Title>Nivel 2 Pendiente</Card.Title>
-                                <Card.Text>Tu acceso al contenido avanzado está pendiente de revisión. ¡Pronto te avisaremos!</Card.Text>
+                                <Card.Text>Tu acceso al contenido está pendiente. ¡Contactanos para comenzar!</Card.Text>
                             </Card.Body>
                         </Card>
                     </Col>
