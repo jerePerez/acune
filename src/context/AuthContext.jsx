@@ -1,15 +1,13 @@
 // src/context/AuthContext.jsx
-
 import React, { createContext, useState, useContext, useEffect } from 'react';
 import {
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
+    sendPasswordResetEmail,
     signOut,
     onAuthStateChanged,
 } from 'firebase/auth';
-
-// 1. Importar 'db' de Firebase y funciones de Firestore
-import { auth, db } from '../firebaseConfig'; // <- Asegúrate de que tu archivo se llama 'firebase' y exporta 'db'
+import { auth, db } from '../firebaseConfig';
 import { doc, onSnapshot, setDoc } from 'firebase/firestore';
 
 const AuthContext = createContext();
@@ -17,81 +15,98 @@ const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
-    // 2. Nuevo estado para almacenar los permisos
     const [userPermissions, setUserPermissions] = useState(null);
+    const [userProfile, setUserProfile] = useState(null);
 
-    const signup = (email, password) => createUserWithEmailAndPassword(auth, email, password);
+    // Registro
+    const signup = async (email, password, name) => {
+        // 1️⃣ Crear usuario
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        const uid = userCredential.user.uid;
+
+        // 2️⃣ Crear perfil del usuario
+        await setDoc(doc(db, 'users', uid), { name });
+
+        // 3️⃣ Crear permisos iniciales
+        await setDoc(doc(db, 'userPermissions', uid), {
+            nivel1: true,
+            nivel2: false,
+            nivel3: false
+        });
+
+        return userCredential;
+    };
+
+    // Login
     const login = (email, password) => signInWithEmailAndPassword(auth, email, password);
+    // Logout
     const logout = () => signOut(auth);
+    // Recuperar contraseña
+    const resetPassword = (email) => sendPasswordResetEmail(auth, email);
 
     useEffect(() => {
-        let unsubscribePermissions = () => { }; // Inicializar función de limpieza de Firestore
+        let unsubscribePermissions = () => { };
+        let unsubscribeProfile = () => { };
 
         const unsubscribeAuth = onAuthStateChanged(auth, async (currentUser) => {
             setUser(currentUser);
 
             if (currentUser) {
-                // El usuario está logueado: intentamos cargar sus permisos
-                const userDocRef = doc(db, 'userPermissions', currentUser.uid);
-
-                // 3. Suscribirse a los permisos en tiempo real (onSnapshot)
-                unsubscribePermissions = onSnapshot(userDocRef, (docSnap) => {
+                // 🔹 Suscribirse a permisos
+                const userPermissionsRef = doc(db, 'userPermissions', currentUser.uid);
+                unsubscribePermissions = onSnapshot(userPermissionsRef, (docSnap) => {
                     if (docSnap.exists()) {
-                        // Documento encontrado: guarda los permisos
                         setUserPermissions(docSnap.data());
                     } else {
-                        // Documento NO encontrado: crea los permisos iniciales
-                        console.log("Creando permisos iniciales para el usuario...");
-
-                        const initialPermissions = {
-                            nivel1: true, // Contenido básico
-                            nivel2: false, // Contenido exclusivo (pendiente de tu OK)
-                        };
-
-                        // Crear el documento en Firestore
-                        setDoc(userDocRef, initialPermissions)
+                        // Esto ya no debería ocurrir, pero por seguridad
+                        const initialPermissions = { nivel1: true, nivel2: false, nivel3: false };
+                        setDoc(userPermissionsRef, initialPermissions)
                             .then(() => setUserPermissions(initialPermissions))
-                            .catch(error => console.error("Error al crear permisos iniciales:", error));
+                            .catch(console.error);
                     }
-                    // 4. Establecer loading a false SÓLO después de verificar Auth y Permisos
-                    setLoading(false);
-                }, (error) => {
-                    console.error("Error al leer permisos de Firestore:", error);
-                    setLoading(false);
+                });
+
+                // 🔹 Suscribirse al perfil del usuario
+                const userProfileRef = doc(db, 'users', currentUser.uid);
+                unsubscribeProfile = onSnapshot(userProfileRef, (docSnap) => {
+                    if (docSnap.exists()) {
+                        setUserProfile(docSnap.data());
+                    } else {
+                        setUserProfile(null);
+                    }
                 });
 
             } else {
-                // Usuario no logueado
                 setUserPermissions(null);
-                setLoading(false);
+                setUserProfile(null);
             }
+
+            setLoading(false);
         });
 
-        // Limpieza: Desuscribirse de Auth y de Firestore
         return () => {
             unsubscribeAuth();
             unsubscribePermissions();
+            unsubscribeProfile();
         };
     }, []);
 
-    // 5. Exponer userPermissions en el valor del contexto
     const value = {
         user,
         loading,
         signup,
         login,
         logout,
-        userPermissions
+        resetPassword,
+        userPermissions,
+        userProfile
     };
 
     return (
         <AuthContext.Provider value={value}>
-            {/* Solo renderiza cuando ya se haya verificado auth y cargado permisos */}
             {!loading && children}
         </AuthContext.Provider>
     );
 };
 
-export const useAuth = () => {
-    return useContext(AuthContext);
-};
+export const useAuth = () => useContext(AuthContext);

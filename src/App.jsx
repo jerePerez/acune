@@ -9,21 +9,15 @@ import Course from './pages/Course';
 import ProtectedRoute from './utils/ProtectedRoute';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import ResetPassword from './pages/ResetPassword';
+import Register from './pages/Register'; // opcional
 
 function App() {
   const location = useLocation();
-  // No mostrar el Footer en la página de login
   const showFooter = location.pathname !== '/login';
 
   useEffect(() => {
-    // 2. Inicializa AOS al montar el componente App
-    AOS.init({
-      duration: 500,      // Duración general de la animación (1 segundo)
-      once: false,          // La animación se ejecuta solo la primera vez que el elemento aparece
-      easing: 'ease-in-out', // Curva de animación
-      mirror: true,       // <--- ESTO es esencial para la repetición al subir
-      offset: 150,        // Ajusta la distancia de activación
-    });
+    AOS.init({ duration: 500, once: false, easing: 'ease-in-out', mirror: true, offset: 150 });
   }, []);
 
   return (
@@ -33,6 +27,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />   {/* opcional */}
+          <Route path="/reset-password" element={<ResetPassword />} />
 
           <Route element={<ProtectedRoute />}>
             <Route path="/dashboard" element={<Dashboard />} />
@@ -46,5 +42,6 @@ function App() {
     </>
   );
 }
+
 
 export default App;

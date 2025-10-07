@@ -143,3 +143,40 @@ html {
   box-sizing: border-box;
   overflow-x: hidden;
 }
+
+/* Evita la manito */
+.no-cursor {
+  cursor: default !important;
+}
+
+/* Botón con gradiente animado */
+.btn-gradient {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  /* como btn de Bootstrap */
+  border-radius: 0.375rem;
+  /* border-radius de btn */
+  font-weight: 500;
+  color: white;
+  text-align: center;
+  background: linear-gradient(270deg, #ff7e5f, #feb47b, #86a8e7, #91eae4);
+  background-size: 800% 800%;
+  animation: gradientMove 8s ease infinite;
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.2);
+  user-select: none;
+  /* opcional, no seleccionable */
+}
+
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}

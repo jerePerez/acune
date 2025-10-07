@@ -6,12 +6,11 @@ import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 
 const nivel2Content = "https://drive.google.com/file/d/1cUM82iWjoJkD7_u4Lpi8mv73Fkg0YR-B/preview"
+
 const Dashboard = () => {
-    // 1. Obtener los permisos del contexto
-    const { user, logout, userPermissions, loading } = useAuth();
+    const { user, userProfile, logout, userPermissions, loading } = useAuth();
     const navigate = useNavigate();
 
-    // ... (Tu función handleLogout se mantiene igual)
     const handleLogout = async () => {
         try {
             await logout();
@@ -21,93 +20,109 @@ const Dashboard = () => {
         }
     };
 
-    // Muestra un mensaje de carga si los permisos aún no están listos
     if (loading || !user) {
         return <Container className="text-center py-5">Cargando Dashboard...</Container>;
     }
 
     const renderContent = () => {
-        // Muestra un mensaje de carga si solo los permisos están pendientes (raro si AuthContext funciona bien)
-        if (!userPermissions) {
-            return <p>Cargando tu perfil y accesos...</p>;
-        }
+        if (!userPermissions) return <p>Cargando tu perfil y accesos...</p>;
 
         return (
-            <Row className="mt-4 justify-content-center">
-
-                {/* 1. NIVEL 1: Contenido Básico (Siempre true) */}
+            <>
+                {/* NIVEL 1 */}
                 {userPermissions.nivel1 && (
-                    <Col md={6} className="mb-4" data-aos="fade-right"> {/* <-- Animación AOS */}
-                        <Card border="success">
-                            <Card.Body>
-                                <Card.Title>Introducción (Nivel básico)</Card.Title>
-                                <Card.Text>El objetivo de esta planificación es rehabilitar progresivamente aquellas zonas del cuerpo que producto de la gestación se vieron modificadas. Entre ellas: Suelo pélvico y Core.
+                    <Row className="justify-content-center mb-4" data-aos="fade-right">
+                        <Col xs={12} md={6}>
+                            <Card border="success">
+                                <Card.Body>
+                                    <Card.Title>Introducción</Card.Title>
+                                    <Card.Text>
+                                        Aquí encontrarás los primeros pasos para comenzar tu recorrido con nosotros. ¡Disfruta de los beneficios iniciales y prepárate para avanzar!
+                                    </Card.Text>
+                                    {userPermissions.nivel2 ? (
+                                        <div className="btn-gradient no-cursor">
+                                            Bienvenido
+                                        </div>
+                                    ) : (
+                                        <Button variant="success" href="https://wa.me/5491124973529?text=Hola%21%20Quisiera%20recibir%20m%C3%A1s%20informaci%C3%B3n" target="_blank" aria-label="Contactar por WhatsApp" className="wapp-link">Solicitar acceso</Button>
+                                    )}
 
-                                    Este primer mes, el punto de partida es el reconocimiento. Donde realizaremos ejercicios de conciencia postural, reconocimiento del suelo pélvico y donde se iniciará con la técnica hipopresiva.
-                                </Card.Text>
-                                <Button variant="success">Continuar recorrido</Button>
-                            </Card.Body>
-                        </Card>
-                    </Col>
+                                </Card.Body>
+                            </Card>
+                        </Col>
+                    </Row>
                 )}
 
-                {/* 2. NIVEL 2: Contenido Exclusivo (Habilitado por tu OK) */}
-                {userPermissions.nivel2 ? (
-                    <Col md={6} className="mx-auto mb-4" data-aos="zoom-in" data-aos-mirror="true">
-                        <Card border="warning" className="text-center">
-                            <Card.Body>
-                                <Card.Title as="h3" className="mb-3 text-warning">Video Exclusivo</Card.Title>
-
-                                {/* 🚨 Contenedor con estilos en línea para la proporción 9:16 */}
-                                <div style={{
-                                    position: 'relative',
-                                    paddingBottom: '177.78%', // Proporción 16/9
-                                    height: 0,
-                                    overflow: 'hidden'
-                                }}>
-                                    <iframe
-                                        // El iframe se posiciona y estira para llenar el contenedor
-                                        src={nivel2Content}
-                                        frameBorder="0"
-                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                        allowFullScreen
-                                        title="Contenido Nivel 2"
-                                        className="rounded"
-                                        style={{
-                                            position: 'absolute',
-                                            top: 0,
-                                            left: 0,
-                                            width: '100%',
-                                            height: '100%',
-                                            // Esto asegura que el contenido vertical no se corte si el contenedor es estrecho
-                                            objectFit: 'cover'
-                                        }}
-                                    ></iframe>
-                                </div>
-
-                            </Card.Body>
-                        </Card>
+                {/* NIVEL 2 */}
+                <Row className="justify-content-center mb-4" data-aos={userPermissions.nivel2 ? "zoom-in" : "fade-left"}>
+                    <Col xs={12} md={6}>
+                        {userPermissions.nivel2 ? (
+                            <Card border="warning" className="text-center">
+                                <Card.Body>
+                                    <Card.Title as="h3" className="mb-3 text-warning">Video Exclusivo</Card.Title>
+                                    <div style={{ position: 'relative', paddingBottom: '177.78%', height: 0, overflow: 'hidden' }}>
+                                        <iframe
+                                            src={nivel2Content}
+                                            frameBorder="0"
+                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                            allowFullScreen
+                                            title="Contenido Nivel 2"
+                                            className="rounded"
+                                            style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'cover' }}
+                                        />
+                                    </div>
+                                </Card.Body>
+                            </Card>
+                        ) : (
+                            <Card border="secondary">
+                                <Card.Body>
+                                    <Card.Title>Nivel 2 Pendiente</Card.Title>
+                                    <Card.Text>Tu acceso al contenido está pendiente. ¡Contactanos para comenzar!</Card.Text>
+                                </Card.Body>
+                            </Card>
+                        )}
                     </Col>
-                ) : (
-                    // Mensaje de Pendiente de Aprobación
-                    <Col md={6} className="mb-4" data-aos="fade-left"> {/* <-- Animación AOS */}
-                        <Card border="secondary">
-                            <Card.Body>
-                                <Card.Title>Nivel 2 Pendiente</Card.Title>
-                                <Card.Text>Tu acceso al contenido está pendiente. ¡Contactanos para comenzar!</Card.Text>
-                            </Card.Body>
-                        </Card>
-                    </Col>
-                )}
+                </Row>
 
-            </Row>
+                {/* NIVEL 3 */}
+                <Row className="justify-content-center mb-4" data-aos={userPermissions.nivel3 ? "zoom-in" : "fade-left"}>
+                    <Col xs={12} md={6}>
+                        {userPermissions.nivel3 ? (
+                            <Card border="warning" className="text-center">
+                                <Card.Body>
+                                    <Card.Title as="h3" className="mb-3 text-warning">Video Nuevo</Card.Title>
+                                    <div style={{ position: 'relative', paddingBottom: '177.78%', height: 0, overflow: 'hidden' }}>
+                                        <iframe
+                                            src={nivel2Content}
+                                            frameBorder="0"
+                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                            allowFullScreen
+                                            title="Contenido Nivel 3"
+                                            className="rounded"
+                                            style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'cover' }}
+                                        />
+                                    </div>
+                                </Card.Body>
+                            </Card>
+                        ) : (
+                            <Card border="secondary">
+                                <Card.Body>
+                                    <Card.Title>Nivel 3 Pendiente</Card.Title>
+                                    <Card.Text>Tu acceso al contenido está pendiente. ¡Contactanos para comenzar!</Card.Text>
+                                </Card.Body>
+                            </Card>
+                        )}
+                    </Col>
+                </Row>
+            </>
         );
     };
 
     return (
-        <Container className="text-center py-5" data-aos="fade-down"> {/* <-- Animación AOS para el encabezado */}
-            <h1>Bienvenida al Dashboard, {user?.email}!</h1>
-            <p>Tu nivel de acceso: **{userPermissions?.nivel2 ? 'Avanzado' : 'Básico'}**</p>
+        <Container className="text-center py-5" data-aos="fade-down">
+            {/* 🔹 Saludo por nombre, si existe */}
+            <h1>Bienvenida al Dashboard, {userProfile?.name || user?.email}!</h1>
+            <p>Tu nivel de acceso: <strong>{userPermissions?.nivel2 ? 'Avanzado' : 'Básico'}</strong></p>
 
             {renderContent()}
 

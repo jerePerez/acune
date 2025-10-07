@@ -11,7 +11,7 @@ function Hero() {
                     Acompañamos tu maternidad con amor, cuidado profesional y ejercicios especializados para que vivas esta hermosa etapa con confianza y alegría.
                 </p>
                 <Stack direction="horizontal" gap={3} className="justify-content-center">
-                    <Button className="btn-hero-primary rounded-pill px-5 py-3" href='#contacto'>Comenzar Ahora</Button>
+                    <Button className="btn btn-dark rounded-pill px-5 py-3" href='#contacto'>Comenzar Ahora</Button>
                     <Button variant="outline-light" className="rounded-pill px-5 py-3 btn-hero-secondary" href='#testimonios'>Ver Testimonios</Button>
                 </Stack>
             </Container>

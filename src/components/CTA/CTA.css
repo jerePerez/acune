@@ -11,13 +11,3 @@
     color: var(--coral);
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
-
-.btn-cta-secondary {
-    font-weight: 600;
-    transition: all 0.3s ease;
-}
-
-.btn-cta-secondary:hover {
-    background-color: white;
-    color: var(--coral);
-}

@@ -1,3 +1,4 @@
+// src/pages/Login.jsx
 import React, { useState } from 'react';
 import { Button, Container, Card, Form, Alert } from 'react-bootstrap';
 import { useAuth } from '../context/AuthContext';
@@ -13,12 +14,13 @@ const Login = () => {
     const handleLogin = async (e) => {
         e.preventDefault();
         setError('');
+
         try {
             await login(email, password);
             navigate('/dashboard');
         } catch (err) {
-            setError('Error al iniciar sesión. Verifica tus credenciales.');
             console.error(err);
+            setError('Error al iniciar sesión. Verifica tus credenciales.');
         }
     };
 
@@ -27,18 +29,41 @@ const Login = () => {
             <Card style={{ width: '24rem' }}>
                 <Card.Body>
                     <h2 className="text-center mb-4">Iniciar Sesión</h2>
+
                     {error && <Alert variant="danger">{error}</Alert>}
+
                     <Form onSubmit={handleLogin}>
                         <Form.Group id="email" className="mb-3">
                             <Form.Label>Email</Form.Label>
-                            <Form.Control type="email" required onChange={(e) => setEmail(e.target.value)} />
+                            <Form.Control
+                                type="email"
+                                required
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                            />
                         </Form.Group>
-                        <Form.Group id="password">
+
+                        <Form.Group id="password" className="mb-3">
                             <Form.Label>Contraseña</Form.Label>
-                            <Form.Control type="password" required onChange={(e) => setPassword(e.target.value)} />
+                            <Form.Control
+                                type="password"
+                                required
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                            />
                         </Form.Group>
-                        <Button className="w-100 mt-4" type="submit">Entrar</Button>
+
+                        <Button className="w-100 mt-3" type="submit">Entrar</Button>
                     </Form>
+
+                    <div className="text-center mt-3">
+                        <p>
+                            <a href="/reset-password">¿Olvidaste tu contraseña?</a>
+                        </p>
+                        <p>
+                            ¿No tenés cuenta? <a href="/register">Crear una cuenta</a>
+                        </p>
+                    </div>
                 </Card.Body>
             </Card>
         </Container>
