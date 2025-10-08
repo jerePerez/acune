@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { Button, Container, Card, Form, Alert } from 'react-bootstrap';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const Register = () => {
     const [name, setName] = useState('');
@@ -89,7 +90,7 @@ const Register = () => {
                     </Form>
 
                     <div className="text-center mt-3">
-                        <p>¿Ya tenés cuenta? <a href="/login">Iniciar sesión</a></p>
+                        <p>¿Ya tenés cuenta? <Link to="/login">Iniciar sesión</Link></p>
                     </div>
                 </Card.Body>
             </Card>

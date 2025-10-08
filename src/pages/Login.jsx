@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { Button, Container, Card, Form, Alert } from 'react-bootstrap';
 import { useAuth } from '../context/AuthContext';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 const Login = () => {
     const [email, setEmail] = useState('');
@@ -58,10 +58,10 @@ const Login = () => {
 
                     <div className="text-center mt-3">
                         <p>
-                            <a href="/reset-password">¿Olvidaste tu contraseña?</a>
+                            <Link to="/reset-password">¿Olvidaste tu contraseña?</Link>
                         </p>
                         <p>
-                            ¿No tenés cuenta? <a href="/register">Crear una cuenta</a>
+                            ¿No tenés cuenta? <Link to="/register">Crear una cuenta</Link>
                         </p>
                     </div>
                 </Card.Body>
